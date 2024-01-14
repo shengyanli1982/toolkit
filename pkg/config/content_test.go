@@ -200,7 +200,7 @@ func TestStreamContent_LoadFromStream_JSON(t *testing.T) {
 	}
 
 	// Call the LoadFromStream method
-	err := content.LoadFromStream(&data, nil)
+	err := content.LoadFromStream(&data)
 	assert.NoError(t, err)
 
 	// Verify the loaded data
@@ -228,7 +228,7 @@ key2: value2
 	}
 
 	// Call the LoadFromStream method
-	err := content.LoadFromStream(&data, nil)
+	err := content.LoadFromStream(&data)
 	assert.NoError(t, err)
 
 	// Verify the loaded data
@@ -256,7 +256,7 @@ func TestStreamContent_LoadFromStream_TOML(t *testing.T) {
 	}
 
 	// Call the LoadFromStream method
-	err := content.LoadFromStream(&data, nil)
+	err := content.LoadFromStream(&data)
 	assert.NoError(t, err)
 
 	// Verify the loaded data

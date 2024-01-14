@@ -1,6 +1,7 @@
 package config
 
 import (
+	"bytes"
 	"io"
 	"strings"
 
@@ -48,6 +49,7 @@ func (c *Content) LoadFromFile(data any, opts ...viper.DecoderConfigOption) erro
 	if err := c.viper.Unmarshal(data, opts...); err != nil {
 		return err
 	}
+	// success
 	return nil
 }
 
@@ -79,21 +81,23 @@ func (c *StreamContent) GetViper() *viper.Viper {
 }
 
 // LoadFromStream loads configuration data from a stream
-func (c *StreamContent) LoadFromStream(data any, reader io.Reader, opts ...viper.DecoderConfigOption) error {
-	// set config file type
-	c.viper.SetConfigType(c.config.fileType)
-	// set reader
-	if reader == nil {
-		reader = c.config.streamReader
+func (c *StreamContent) LoadFromStream(data any, opts ...viper.DecoderConfigOption) error {
+	// read all bytes from io.Reader
+	content, err := io.ReadAll(c.config.streamReader)
+	if err != nil {
+		return err
 	}
 	// read content from io.Reader
-	if err := c.viper.ReadConfig(reader); err != nil {
+	if err := c.viper.ReadConfig(bytes.NewReader(content)); err != nil {
 		return err
 	}
 	// unmarshal config file data
 	if err := c.viper.Unmarshal(data, opts...); err != nil {
 		return err
 	}
+	// reset stream reader
+	c.config.streamReader = bytes.NewReader(content)
+	// success
 	return nil
 }
 
