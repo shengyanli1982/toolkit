@@ -69,10 +69,7 @@ type StreamContent struct {
 func NewStreamContent(config *Config) *StreamContent {
 	config = isConfigValid(config)
 	return &StreamContent{
-		Content: Content{
-			config: config,
-			viper:  viper.New(),
-		},
+		Content: *NewContent(config),
 	}
 }
 
