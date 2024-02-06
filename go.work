@@ -1,0 +1,8 @@
+go 1.19
+
+use (
+	./pkg/command
+	./pkg/config
+	./pkg/conver
+	./pkg/httptool
+)
