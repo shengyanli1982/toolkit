@@ -1,23 +1,25 @@
-# Toolkit
-
-go commonly used development kits
+<div align="center">
+	<h1>Toolkit</h1>
+    <p>Go commonly used development kits</p>
+	<img src="assets/logo.png" alt="logo" width="400px">
+</div>
 
 ## Modules
 
-All modules in [pkg](./pkg/) directory.
+All modules can be found in the [pkg](./pkg/) directory.
 
 ### 1. Command
 
-[**command**](./pkg/command/) is used to execute `useage` and `help` command display, very useful. It based on `github.com/spf13/cobra` package.
+The [**command**](./pkg/command/) module is used to execute `useage` and `help` commands, making it very useful. It is based on the `github.com/spf13/cobra` package.
 
 ### 2. Config
 
-[**config**](./pkg/config/) is used to load configuration from file. It had been tested with `yaml`, `json` and `toml` file.
+The [**config**](./pkg/config/) module is used to load configuration from files. It has been tested with `yaml`, `json`, and `toml` files.
 
 ### 3. Conver
 
-[**conver**](./pkg/conver/) is used to convert data type, such as `string` to `int`, `string` to `bytes`, etc.
+The [**conver**](./pkg/conver/) module is used to convert data types, such as converting `string` to `int`, `string` to `bytes`, etc.
 
 ### 4. Httptool
 
-[**httptool**](./pkg/httptool/) is used to standard response data structure.
+The [**httptool**](./pkg/httptool/) module is used to handle standard response data structures.

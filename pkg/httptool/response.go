@@ -1,61 +1,69 @@
 package httptool
 
-// HttpResponseItemsTotal 响应对象总数
-// HttpResponseItemsTotal response total count of object
+// HttpResponseItemsTotal 是响应对象的总数
+// HttpResponseItemsTotal is the total count of response objects
 type HttpResponseItemsTotal struct {
-	// 响应对象总数
-	// response total count of object
+	// TotalCount 是响应对象的总数
+	// TotalCount is the total count of response objects
 	TotalCount int64 `json:"totalCount" yaml:"totalCount"`
 }
 
-// HttpResponseItemsID 响应对象 Id
-// HttpResponseItemsID response id of object
+// HttpResponseItemsID 是响应对象的 ID
+// HttpResponseItemsID is the ID of the response object
 type HttpResponseItemsID struct {
-	// 响应对象 Id
-	// response id of object
+	// ID 是响应对象的 ID
+	// ID is the ID of the response object
 	ID int64 `json:"id" yaml:"id"`
 }
 
-// HttpQueryPaginated 分页查询
-// HttpQueryPaginated paginated query
+// HttpQueryPaginated 是分页查询
+// HttpQueryPaginated is the paginated query
 type HttpQueryPaginated struct {
-	// 当前页数量
-	// current page index
+	// PageIndex 是当前页的索引
+	// PageIndex is the index of the current page
 	PageIndex int64 `json:"pageIndex" yaml:"pageIndex"`
 
-	// 每页显示最大条目数
-	// max item count per page
+	// PageSize 是每页显示的最大条目数
+	// PageSize is the maximum number of items displayed per page
 	PageSize int64 `json:"pageSize" yaml:"pageSize"`
 
-	// 是否倒序
-	// is desc
+	// Desc 表示是否倒序
+	// Desc indicates whether it is in descending order
 	Desc bool `json:"desc" yaml:"desc"`
 }
 
-// BaseHttpResponse 基础响应对象
-// BaseHttpResponse base response object
+// BaseHttpResponse 是基础响应对象
+// BaseHttpResponse is the base response object
 type BaseHttpResponse struct {
-	// 响应代码
-	// response code
+	// Code 是响应代码
+	// Code is the response code
 	Code int64 `json:"errorCode" yaml:"errorCode"`
 
-	// 错误信息
-	// error message
+	// ErrorMessage 是错误信息
+	// ErrorMessage is the error message
 	ErrorMessage string `json:"errorMessage,omitempty" yaml:"errorMessage,omitempty"`
 
-	// 错误详细信息
-	// error detail message
+	// ErrorDetail 是错误的详细信息
+	// ErrorDetail is the detailed error message
 	ErrorDetail interface{} `json:"errorDetail,omitempty" yaml:"errorDetail,omitempty"`
 
-	// 响应数据
-	// response data
+	// Data 是响应数据
+	// Data is the response data
 	Data interface{} `json:"data,omitempty" yaml:"data,omitempty"`
 }
 
-// HttpResponsePaginated 分页响应对象
-// HttpResponsePaginated paginated response object
+// HttpResponsePaginated 是一个包含分页信息和基础响应的结构体
+// HttpResponsePaginated is a struct that includes pagination information and a base response
 type HttpResponsePaginated struct {
+	// HttpResponseItemsTotal 包含响应对象的总数
+	// HttpResponseItemsTotal includes the total count of response objects
 	HttpResponseItemsTotal
+
+	// HttpQueryPaginated 包含分页查询信息
+	// HttpQueryPaginated includes paginated query information
 	HttpQueryPaginated
+
+	// BaseHttpResponse 包含基础响应信息
+	// BaseHttpResponse includes basic response information
 	BaseHttpResponse
 }
