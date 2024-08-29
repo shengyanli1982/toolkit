@@ -1,6 +1,6 @@
 # Tiny Http Server
 
-This is a tiny http server that can serve Kubernetes Pod. It is written in Go and uses the standard library.
+This is a tiny http server that can serve Kubernetes Pod. It is written in Go and uses the standard library. Just only support health check.
 
 ## Installation
 

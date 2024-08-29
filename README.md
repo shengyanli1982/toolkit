@@ -26,4 +26,4 @@ The [**httptool**](./pkg/httptool/) module is used to handle standard response d
 
 ### 5 HttpServer
 
-The [**httpserver**](./pkg/httpserver/) module is a tiny http server that can serve Kubernetes Pod. It is written in Go and uses the standard library.
+The [**httpserver**](./pkg/httpserver/) module is a tiny http server that can serve Kubernetes Pod. It is written in Go and uses the standard library. Just only support health check.
