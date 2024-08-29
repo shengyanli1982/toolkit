@@ -5,4 +5,5 @@ use (
 	./pkg/config
 	./pkg/conver
 	./pkg/httptool
+	./pkg/httpserver
 )
