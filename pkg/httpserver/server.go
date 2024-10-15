@@ -6,12 +6,18 @@ import (
 	"net/http"
 	"sync"
 	"time"
+
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 const (
 	// defaultHealthCheckUrl 是默认的健康检查URL
 	// defaultHealthCheckUrl is the default health check URL
 	defaultHealthCheckUrl = "/ping"
+
+	// defaultMetricsUrl 是默认的 metrics URL
+	// defaultMetricsUrl is the default metrics URL
+	defaultMetricsUrl = "/metrics"
 
 	// listenAddr 是服务器监听的地址
 	// listenAddr is the address the server listens on
@@ -82,6 +88,10 @@ func NewTinyHttpServer(port uint16, logger Logger, hcFunc func(w http.ResponseWr
 		// Otherwise, use the default health check function handler
 		mux.HandleFunc(defaultHealthCheckUrl, defaultHealthCheckFuncHandler)
 	}
+
+	// 添加默认的 metrics URL
+	// Add the default metrics URL
+	mux.HandleFunc(defaultMetricsUrl, promhttp.Handler().ServeHTTP)
 
 	// 如果 logger 为空，则使用默认的 logger
 	// If logger is nil, use the default logger
