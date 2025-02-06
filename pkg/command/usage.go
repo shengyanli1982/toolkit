@@ -69,9 +69,40 @@ func CustomCobraUsage() func(*cobra.Command) error {
 			// 遍历所有标志
 			// Iterate through all flags
 			cmd.Flags().VisitAll(func(f *pflag.Flag) {
-				// 输出标志的短名称、长名称、使用说明和默认值
-				// Output the short name, long name, usage, and default value of the flag
-				fmt.Fprintf(&buf, "\t%-24s %s (default: %s)\n", "-"+f.Shorthand+", --"+f.Name, f.Usage, f.DefValue)
+				// 获取标志的完整名称
+				// Get the complete flag name
+				name := ""
+				if f.Shorthand != "" {
+					// 如果有短标志，则同时显示短标志和长标志
+					// If there is a shorthand flag, display both short and long flags
+					name = fmt.Sprintf("-%s, --%s", f.Shorthand, f.Name)
+				} else {
+					// 如果没有短标志，则只显示长标志
+					// If there is no shorthand flag, only display the long flag
+					name = fmt.Sprintf("--%s", f.Name)
+				}
+
+				// 格式化标志的描述
+				// Format the flag description
+				usage := f.Usage
+				if f.Name == "version" || f.Shorthand == "v" {
+					// 为版本标志提供统一的描述
+					// Provide unified description for version flag
+					usage = "Print version information"
+				}
+
+				// 输出标志信息
+				// Output flag information
+				fmt.Fprintf(&buf, "\t%-24s %s", name, usage)
+				if f.DefValue != "" {
+					// 如果有默认值，则显示默认值
+					// If there is a default value, display it
+					fmt.Fprintf(&buf, " (default: %s)", f.DefValue)
+				}
+
+				// 输出换行符
+				// Output a newline character
+				fmt.Fprintln(&buf)
 			})
 		}
 
