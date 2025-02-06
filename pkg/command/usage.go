@@ -32,7 +32,7 @@ func CustomCobraUsage() func(*cobra.Command) error {
 		// If the command line has a version number, output the version number
 		if len(strings.TrimSpace(cmd.Version)) != 0 {
 			fmt.Fprintln(&buf, "Version:")
-			fmt.Fprintf(&buf, "\t%s\n", cmd.Version)
+			fmt.Fprintf(&buf, "\t%s\n\n", cmd.Version)
 		}
 
 		// 输出 "Usage:" 字样
