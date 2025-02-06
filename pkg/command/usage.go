@@ -22,16 +22,17 @@ func CustomCobraUsage() func(*cobra.Command) error {
 		// Create a buffer to store the usage
 		var buf bytes.Buffer
 
-		// 如果命令行有版本号，则输出版本号
-		// If the command line has a version number, output the version number
-		if strings.TrimSpace(cmd.Version) != "" && strings.TrimSpace(cmd.Name()) != "" {
-			fmt.Fprintf(&buf, "%s: %s\n\n", cmd.Name(), cmd.Version)
-		}
-
 		// 如果命令行有长描述，则输出长描述
 		// If the command line has a long description, output the long description
 		if len(strings.TrimSpace(cmd.Long)) != 0 {
 			fmt.Fprintln(&buf, cmd.Long+"\n")
+		}
+
+		// 如果命令行有版本号，则输出版本号
+		// If the command line has a version number, output the version number
+		if len(strings.TrimSpace(cmd.Version)) != 0 {
+			fmt.Fprintln(&buf, "Version:")
+			fmt.Fprintf(&buf, "\t%s\n", cmd.Version)
 		}
 
 		// 输出 "Usage:" 字样
