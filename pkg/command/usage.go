@@ -31,8 +31,7 @@ func CustomCobraUsage() func(*cobra.Command) error {
 		// 如果命令行有版本号，则输出版本号
 		// If the command line has a version number, output the version number
 		if len(strings.TrimSpace(cmd.Version)) != 0 {
-			fmt.Fprintln(&buf, "Version:")
-			fmt.Fprintf(&buf, "\t%s\n\n", cmd.Version)
+			fmt.Fprintln(&buf, "Version: "+cmd.Version)
 		}
 
 		// 输出 "Usage:" 字样
@@ -82,19 +81,10 @@ func CustomCobraUsage() func(*cobra.Command) error {
 					name = fmt.Sprintf("--%s", f.Name)
 				}
 
-				// 格式化标志的描述
-				// Format the flag description
-				usage := f.Usage
-				if f.Name == "version" || f.Shorthand == "v" {
-					// 为版本标志提供统一的描述
-					// Provide unified description for version flag
-					usage = "Print version information"
-				}
-
 				// 输出标志信息
 				// Output flag information
-				fmt.Fprintf(&buf, "\t%-24s %s", name, usage)
-				if f.DefValue != "" {
+				fmt.Fprintf(&buf, "\t%-24s %s", name, f.Usage)
+				if f.DefValue != "" && f.Name != "help" && f.Name != "version" {
 					// 如果有默认值，则显示默认值
 					// If there is a default value, display it
 					fmt.Fprintf(&buf, " (default: %s)", f.DefValue)
